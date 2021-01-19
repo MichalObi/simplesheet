@@ -3,7 +3,7 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/simplesheet/BE/pkg/logger"
+	"github.com/simplesheet/pkg/logger"
 	"github.com/julienschmidt/httprouter"
 )
 

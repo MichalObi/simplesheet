@@ -2,7 +2,7 @@ package models;
 
 import (
 	"context"
-	"github.com/simplesheet/BE/pkg/application"
+	"github.com/simplesheet/pkg/application"
 )
 
 type User struct {

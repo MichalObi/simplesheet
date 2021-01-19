@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/simplesheet/BE/cmd/api/models"
-	"github.com/simplesheet/BE/pkg/application"
-	"github.com/simplesheet/BE/pkg/middleware"
+	"github.com/simplesheet/cmd/api/models"
+	"github.com/simplesheet/pkg/application"
+	"github.com/simplesheet/pkg/middleware"
 	"github.com/julienschmidt/httprouter"
 )
 

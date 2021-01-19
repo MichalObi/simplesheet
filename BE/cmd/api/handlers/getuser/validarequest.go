@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/simplesheet/BE/cmd/api/models"
+	"github.com/simplesheet/cmd/api/models"
 	"github.com/julienschmidt/httprouter"
 )
 

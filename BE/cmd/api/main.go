@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/simplesheet/BE/cmd/api/router"
-	"github.com/simplesheet/BE/pkg/application"
-	"github.com/simplesheet/BE/pkg/exithandler"
-	"github.com/simplesheet/BE/pkg/logger"
-	"github.com/simplesheet/BE/pkg/server"
+	"github.com/simplesheet/cmd/api/router"
+	"github.com/simplesheet/pkg/application"
+	"github.com/simplesheet/pkg/exithandler"
+	"github.com/simplesheet/pkg/logger"
+	"github.com/simplesheet/pkg/server"
 	"github.com/joho/godotenv"
 )
 

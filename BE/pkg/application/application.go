@@ -1,8 +1,8 @@
 package application
 
 import (
-	"github.com/simplesheet/BE/pkg/config"
-	"github.com/simplesheet/BE/pkg/db"
+	"github.com/simplesheet/pkg/config"
+	"github.com/simplesheet/pkg/db"
 )
 
 // Application holds commonly used app wide data, for ease of DI

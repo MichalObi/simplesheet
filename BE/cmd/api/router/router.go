@@ -1,10 +1,10 @@
 package router
 
 import (
-	"github.com/simplesheet/BE/cmd/api/handlers/createuser"
-	"github.com/simplesheet/BE/cmd/api/handlers/getuser"
-	"github.com/simplesheet/BE/cmd/api/handlers/createsheet"
-	"github.com/simplesheet/BE/pkg/application"
+	"github.com/simplesheet/cmd/api/handlers/createuser"
+	"github.com/simplesheet/cmd/api/handlers/getuser"
+	"github.com/simplesheet/cmd/api/handlers/createsheet"
+	"github.com/simplesheet/pkg/application"
 	"github.com/julienschmidt/httprouter"
 )
 

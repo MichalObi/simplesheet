@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/simplesheet/BE/pkg/config"
+	"github.com/simplesheet/pkg/config"
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	"github.com/golang-migrate/migrate/v4/source/file"

@@ -5,7 +5,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/simplesheet/BE/pkg/logger"
+	"github.com/simplesheet/pkg/logger"
 )
 
 // Init accepts a callback function that will be invoked when program exits
