@@ -5,8 +5,8 @@ import (
 
 	"github.com/simplesheet/pkg/config"
 	"github.com/golang-migrate/migrate/v4"
-	"github.com/golang-migrate/migrate/v4/database/postgres"
-	"github.com/golang-migrate/migrate/v4/source/file"
+	_"github.com/golang-migrate/migrate/v4/database/postgres"
+	_"github.com/golang-migrate/migrate/v4/source/file"
 	"github.com/joho/godotenv"
 )
 
