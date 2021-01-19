@@ -1,4 +1,4 @@
-module github.com/boilerplate
+module github.com/simplesheet
 
 go 1.13
 
