@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS public.sheets
-(
-    id SERIAL PRIMARY KEY,
-    field VARCHAR(100) NOT NULL,
-    value VARCHAR(100) NOT NULL
-);
