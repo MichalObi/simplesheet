@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS public.sheets
 (
     id SERIAL PRIMARY KEY,
-    group_name VARCHAR(100) NOT NULL,
-    has_positions BOOLEAN NOT NULL
+    has_metals BOOLEAN NOT NULL,
+    has_crypto BOOLEAN NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS public.metals
