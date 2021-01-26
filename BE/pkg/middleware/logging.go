@@ -3,8 +3,8 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/simplesheet/pkg/logger"
 	"github.com/julienschmidt/httprouter"
+	"github.com/simplesheet/pkg/logger"
 )
 
 func LogRequest(next httprouter.Handle) httprouter.Handle {

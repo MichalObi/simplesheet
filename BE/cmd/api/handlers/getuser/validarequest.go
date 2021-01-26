@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/simplesheet/cmd/api/models"
 	"github.com/julienschmidt/httprouter"
+	"github.com/simplesheet/cmd/api/models"
 )
 
 func validateRequest(next httprouter.Handle) httprouter.Handle {

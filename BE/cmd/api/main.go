@@ -1,12 +1,12 @@
 package main
 
 import (
+	"github.com/joho/godotenv"
 	"github.com/simplesheet/cmd/api/router"
 	"github.com/simplesheet/pkg/application"
 	"github.com/simplesheet/pkg/exithandler"
 	"github.com/simplesheet/pkg/logger"
 	"github.com/simplesheet/pkg/server"
-	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -15,6 +15,7 @@ func main() {
 	}
 
 	app, err := application.Get()
+
 	if err != nil {
 		logger.Error.Fatal(err.Error())
 	}

@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/julienschmidt/httprouter"
 	"github.com/simplesheet/cmd/api/models"
 	"github.com/simplesheet/pkg/application"
 	"github.com/simplesheet/pkg/middleware"
-	"github.com/julienschmidt/httprouter"
 )
 
 func createGroup(app *application.Application) httprouter.Handle {

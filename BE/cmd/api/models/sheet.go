@@ -1,4 +1,4 @@
-package models;
+package models
 
 import (
 	"context"
@@ -6,13 +6,13 @@ import (
 )
 
 type Sheet struct {
-  ID int `json:"id"`
+	ID        int  `json:"id"`
 	HasMetals bool `json:"has_metals"`
 	HasCrypto bool `json:"has_crypto"`
 }
 
 func (s *Sheet) Create(ctx context.Context, app *application.Application) error {
-	stmt_sheet := `
+	stmt := `
 		INSERT INTO sheets (
 			has_metals,
       has_crypto
@@ -22,9 +22,9 @@ func (s *Sheet) Create(ctx context.Context, app *application.Application) error 
 	`
 	err := app.DB.Client.QueryRowContext(
 		ctx,
-		stmt_sheet,
+		stmt,
 		s.HasMetals,
-    s.HasCrypto,
+		s.HasCrypto,
 	).Scan(&s.ID)
 
 	if err != nil {
@@ -46,8 +46,8 @@ func (s *Sheet) GetByID(ctx context.Context, app *application.Application) error
 		s.ID,
 	).Scan(
 		&s.ID,
-    &s.HasMetals,
-    &s.HasCrypto,
+		&s.HasMetals,
+		&s.HasCrypto,
 	)
 
 	if err != nil {
