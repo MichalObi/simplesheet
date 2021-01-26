@@ -5,21 +5,14 @@ import (
 	"github.com/simplesheet/pkg/application"
 )
 
-type Position struct {
-	Field string
-  Value string
-}
-
 type Sheet struct {
   ID int `json:"id"`
 	HasMetals bool `json:"has_metals"`
 	HasCrypto bool `json:"has_crypto"`
-	MetalsFields []Position `json:"metals_fields"`
-	CryptoFields []Position `json:"crypto_fields"`
 }
 
 func (s *Sheet) Create(ctx context.Context, app *application.Application) error {
-	stmt := `
+	stmt_sheet := `
 		INSERT INTO sheets (
 			has_metals,
       has_crypto
@@ -29,7 +22,7 @@ func (s *Sheet) Create(ctx context.Context, app *application.Application) error 
 	`
 	err := app.DB.Client.QueryRowContext(
 		ctx,
-		stmt,
+		stmt_sheet,
 		s.HasMetals,
     s.HasCrypto,
 	).Scan(&s.ID)
@@ -53,8 +46,8 @@ func (s *Sheet) GetByID(ctx context.Context, app *application.Application) error
 		s.ID,
 	).Scan(
 		&s.ID,
-    s.HasMetals,
-    s.HasCrypto,
+    &s.HasMetals,
+    &s.HasCrypto,
 	)
 
 	if err != nil {
