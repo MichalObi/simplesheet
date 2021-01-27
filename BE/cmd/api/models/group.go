@@ -74,8 +74,9 @@ func (g *Group) GetByID(ctx context.Context, app *application.Application) error
 		g.ID,
 	).Scan(
 		&g.ID,
-		g.SheetId,
-		g.Positions,
+		&g.SheetId,
+		&g.Name,
+		&g.Positions,
 	)
 
 	if err != nil {
