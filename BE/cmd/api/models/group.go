@@ -16,7 +16,7 @@ type Position struct {
 type PositionSlice []Position
 
 type Group struct {
-	ID        int           `json:"id"`
+	GroupID   int           `json:"group_id"`
 	SheetId   int           `json:"sheet_id"`
 	Name      string        `json:"name"`
 	Positions PositionSlice `json:"positions"`
@@ -45,7 +45,7 @@ func (g *Group) Create(ctx context.Context, app *application.Application) error 
 						positions
 					)
 					VALUES ($1, $2, $3)
-					RETURNING id`
+					RETURNING group_id`
 
 	err := app.DB.Client.QueryRowContext(
 		ctx,
@@ -53,7 +53,7 @@ func (g *Group) Create(ctx context.Context, app *application.Application) error 
 		g.SheetId,
 		g.Name,
 		g.Positions,
-	).Scan(&g.ID)
+	).Scan(&g.GroupID)
 
 	if err != nil {
 		return err
@@ -66,14 +66,14 @@ func (g *Group) GetByID(ctx context.Context, app *application.Application) error
 	stmt := `
 		SELECT *
 		FROM groups
-		WHERE id = $1
+		WHERE group_id = $1
 	`
 	err := app.DB.Client.QueryRowContext(
 		ctx,
 		stmt,
-		g.ID,
+		g.GroupID,
 	).Scan(
-		&g.ID,
+		&g.GroupID,
 		&g.SheetId,
 		&g.Name,
 		&g.Positions,
