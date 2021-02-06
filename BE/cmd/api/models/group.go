@@ -16,8 +16,8 @@ type Position struct {
 type PositionSlice []Position
 
 type Group struct {
-	GroupID   int           `json:"group_id"`
 	SheetId   int           `json:"sheet_id"`
+	GroupID   int           `json:"group_id"`
 	Name      string        `json:"name"`
 	Positions PositionSlice `json:"positions"`
 }
@@ -40,7 +40,7 @@ func (g *Group) Create(ctx context.Context, app *application.Application) error 
 
 	stmt := `INSERT INTO groups
 					(
-						sheets_id,
+						sheet_id,
 						name,
 						positions
 					)
@@ -73,8 +73,8 @@ func (g *Group) GetByID(ctx context.Context, app *application.Application) error
 		stmt,
 		g.GroupID,
 	).Scan(
-		&g.GroupID,
 		&g.SheetId,
+		&g.GroupID,
 		&g.Name,
 		&g.Positions,
 	)
