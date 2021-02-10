@@ -21,7 +21,7 @@ func validateRequest(next httprouter.Handle) httprouter.Handle {
 			return
 		}
 
-		ctx := context.WithValue(r.Context(), models.CtxKey("groupid"), id)
+		ctx := context.WithValue(r.Context(), models.CtxKey("sheetid"), id)
 		r = r.WithContext(ctx)
 		next(w, r, p)
 	}

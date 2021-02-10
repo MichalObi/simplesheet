@@ -17,8 +17,8 @@ func getGroup(app *application.Application) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		defer r.Body.Close()
 
-		id := r.Context().Value(models.CtxKey("groupid"))
-		group := &models.Group{GroupID: id.(int)}
+		id := r.Context().Value(models.CtxKey("sheetid"))
+		group := &models.Group{SheetID: id.(int)}
 
 		if err := group.GetByID(r.Context(), app); err != nil {
 			if errors.Is(err, sql.ErrNoRows) {

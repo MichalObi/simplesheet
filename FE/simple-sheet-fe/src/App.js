@@ -47,7 +47,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          Simple Sheet
+          Simple Sheet id {sheetsAndGroups.sheet_id}
         </header>
       </div>
     );
