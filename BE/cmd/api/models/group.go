@@ -5,6 +5,7 @@ import (
 	"database/sql/driver"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/simplesheet/pkg/application"
 )
 
@@ -68,16 +69,34 @@ func (g *Group) GetByID(ctx context.Context, app *application.Application) error
 		FROM groups
 		WHERE sheet_id = $1
 	`
-	err := app.DB.Client.QueryRowContext(
+	rows, err := app.DB.Client.QueryContext(
 		ctx,
 		stmt,
 		g.SheetID,
-	).Scan(
-		&g.SheetID,
-		&g.GroupID,
-		&g.Name,
-		&g.Positions,
 	)
+
+	if err != nil {
+		return err
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(
+			&g.SheetID,
+			&g.GroupID,
+			&g.Name,
+			&g.Positions,
+		)
+
+		fmt.Printf("%+v\n", g)
+
+		if err != nil {
+			return err
+		}
+	}
+
+	err = rows.Err()
 
 	if err != nil {
 		return err
