@@ -79,17 +79,24 @@ func (g *Group) GetByID(ctx context.Context, app *application.Application) error
 		return err
 	}
 
+	results := []Group{}
+
 	defer rows.Close()
 
 	for rows.Next() {
+		group := Group{}
+
 		err := rows.Scan(
-			&g.SheetID,
-			&g.GroupID,
-			&g.Name,
-			&g.Positions,
+			&group.SheetID,
+			&group.GroupID,
+			&group.Name,
+			&group.Positions,
 		)
 
-		fmt.Printf("%+v\n", g)
+		results = append(results, group)
+
+		fmt.Println("results")
+		fmt.Printf("%+v\n", results)
 
 		if err != nil {
 			return err
