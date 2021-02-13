@@ -2,20 +2,44 @@ package models
 
 import (
 	"context"
+	"database/sql/driver"
+	"encoding/json"
+	"errors"
 	"github.com/simplesheet/pkg/application"
 )
 
+type Fields struct {
+	Field string `json:"field"`
+	Value string `json:"value"`
+}
+
+type FieldsSlice []Position
+
 type Sheet struct {
-	ID        int  `json:"id"`
-	HasMetals bool `json:"has_metals"`
-	HasCrypto bool `json:"has_crypto"`
+	ID     int         `json:"id"`
+	Type   string      `json:"type"`
+	Fields FieldsSlice `json:"fields"`
+}
+
+func (a FieldsSlice) Value() (driver.Value, error) {
+	return json.Marshal(a)
+}
+
+func (s *FieldsSlice) Scan(src interface{}) error {
+	switch v := src.(type) {
+	case []byte:
+		return json.Unmarshal(v, s)
+	case string:
+		return json.Unmarshal([]byte(v), s)
+	}
+	return errors.New("type assertion failed")
 }
 
 func (s *Sheet) Create(ctx context.Context, app *application.Application) error {
 	stmt := `
 		INSERT INTO sheets (
-			has_metals,
-      has_crypto
+			type,
+      fields
 		)
 		VALUES ($1, $2)
 		RETURNING id
@@ -23,8 +47,8 @@ func (s *Sheet) Create(ctx context.Context, app *application.Application) error 
 	err := app.DB.Client.QueryRowContext(
 		ctx,
 		stmt,
-		s.HasMetals,
-		s.HasCrypto,
+		s.Type,
+		s.Fields,
 	).Scan(&s.ID)
 
 	if err != nil {
@@ -46,8 +70,8 @@ func (s *Sheet) GetByID(ctx context.Context, app *application.Application) error
 		s.ID,
 	).Scan(
 		&s.ID,
-		&s.HasMetals,
-		&s.HasCrypto,
+		&s.Type,
+		&s.Fields,
 	)
 
 	if err != nil {
