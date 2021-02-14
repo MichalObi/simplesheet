@@ -13,7 +13,7 @@ type Fields struct {
 	Value string `json:"value"`
 }
 
-type FieldsSlice []Position
+type FieldsSlice []Fields
 
 type Sheet struct {
 	ID     int         `json:"id"`

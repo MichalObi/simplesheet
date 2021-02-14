@@ -4,6 +4,8 @@ go 1.13
 
 require (
 	github.com/apache/thrift v0.12.0 // indirect
+	github.com/fatih/color v1.10.0 // indirect
+	github.com/githubnemo/CompileDaemon v1.2.1 // indirect
 	github.com/golang-migrate/migrate/v4 v4.14.1
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/joho/godotenv v1.3.0
