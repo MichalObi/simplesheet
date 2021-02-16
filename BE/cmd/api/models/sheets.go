@@ -8,7 +8,7 @@ import (
 	"github.com/simplesheet/pkg/application"
 )
 
-type SheetSlice []Sheet
+type SheetSlice []*Sheet
 
 type AllSheets struct {
 	Sheets SheetSlice `json:"sheets"`
@@ -44,7 +44,7 @@ func (s *AllSheets) GetAll(ctx context.Context, app *application.Application) er
 
 	defer rows.Close()
 
-	sheets := []Sheet{}
+	sheets := SheetSlice{}
 
 	for rows.Next() {
 		r := new(Sheet)
@@ -54,10 +54,10 @@ func (s *AllSheets) GetAll(ctx context.Context, app *application.Application) er
 			return err
 		}
 
-		sheets = append(sheets, s)
+		sheets = append(sheets, r)
 	}
 
-	&s.Sheets = sheets
+	s.Sheets = sheets
 
 	return nil
 }
