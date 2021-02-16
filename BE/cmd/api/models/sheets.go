@@ -33,16 +33,31 @@ func (s *AllSheets) GetAll(ctx context.Context, app *application.Application) er
 		SELECT *
 		FROM sheets
 	`
-	err := app.DB.Client.QueryRowContext(
+	rows, err := app.DB.Client.QueryContext(
 		ctx,
 		stmt,
-	).Scan(
-		&s.Sheets,
 	)
 
 	if err != nil {
 		return err
 	}
+
+	defer rows.Close()
+
+	sheets := []Sheet{}
+
+	for rows.Next() {
+		r := new(Sheet)
+		err := rows.Scan(&r.ID, &r.Type, &r.Fields)
+
+		if err != nil {
+			return err
+		}
+
+		sheets = append(sheets, s)
+	}
+
+	&s.Sheets = sheets
 
 	return nil
 }
