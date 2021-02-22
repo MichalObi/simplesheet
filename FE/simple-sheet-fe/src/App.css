@@ -15,13 +15,32 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-header nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.App-header nav ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.App-header nav ul li {
+  margin: 0 10px;
+}
+
+.App-header nav ul li a {
+  text-decoration: none;
 }
 
 .App-link {
