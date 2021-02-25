@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
-
+import Sheet from './Sheet'
 
 function ExploreSheets() {
 
@@ -15,7 +14,7 @@ function ExploreSheets() {
 
   const [error, setError] = useStateCallbackWrapper(null, state => log('error', state)),
         [isLoaded, setIsLoaded] = useStateCallbackWrapper(false,  state => log('isLoaded', state)),
-        [sheets, setSheets] = useStateCallbackWrapper({}, state => log('sheets', state));
+        [sheets, setSheets] = useStateCallbackWrapper([], state => log('sheets', state));
 
   const handleAjaxError = error => {
           setIsLoaded(true);
@@ -25,7 +24,7 @@ function ExploreSheets() {
     useEffect(() => {
       fetch('/sheets')
       .then(sheets => sheets.json())
-      .then(sheets => {
+      .then(({sheets}) => {
         setSheets(sheets);
         setIsLoaded(true);
         }, handleAjaxError)
@@ -40,7 +39,15 @@ function ExploreSheets() {
   } else if (!isLoaded) {
     return <p>loading</p>;
   } else {
-    return <h2>Explore sheets</h2>;
+    return (
+      <div>
+        {sheets.map((sheet, index) => (
+          <Sheet key={index}
+                 id={sheet.id}
+                 type={sheet.type}
+                 fields={sheet.fields} />))}
+      </div>
+    );
   }
 }
 
