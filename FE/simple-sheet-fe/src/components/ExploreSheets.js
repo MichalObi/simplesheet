@@ -41,6 +41,7 @@ function ExploreSheets() {
   } else {
     return (
       <div>
+        <h2>Explore sheets</h2>
         {sheets.map((sheet, index) => (
           <Sheet key={index}
                  id={sheet.id}
