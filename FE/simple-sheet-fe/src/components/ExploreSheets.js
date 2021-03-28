@@ -1,16 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import Sheet from './Sheet'
+import React, {useEffect} from 'react';
+import Sheet from './Sheet';
+import {useStateCallbackWrapper, log} from './../Utils.js';
 
 function ExploreSheets() {
-
-  const useStateCallbackWrapper = (initilValue, callBack) => {
-    const [state, setState] = useState(initilValue);
-
-    useEffect(() => callBack(state), [state]);
-    return [state, setState];
-  };
-
-  const log = (key, state) => console.log(`${key}`, state);
 
   const [error, setError] = useStateCallbackWrapper(null, state => log('error', state)),
         [isLoaded, setIsLoaded] = useStateCallbackWrapper(false,  state => log('isLoaded', state)),

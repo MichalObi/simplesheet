@@ -1,10 +1,17 @@
 import React, {useState, useEffect} from 'react';
+import {useStateCallbackWrapper, log} from './../Utils.js';
 
 function CreateSheet() {
 
-  const [type, setType] = useState(null);
+  const [type, setType] = useStateCallbackWrapper(null, type => log('type', type));
 
   const handleSelectType = ({target: {value}}) => setType(value);
+
+  const typesDict = {
+    crypto: 'Crypto',
+    metals: 'Metals',
+    etf: 'ETF'
+  }
 
   return (
     <div>
